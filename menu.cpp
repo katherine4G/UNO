@@ -6,7 +6,6 @@ Menu::Menu() : window(sf::VideoMode(width, height), "UNO"), isPlaying(true) {
     backgroundTexture.loadFromFile("interfaz/menu.png");
     backgroundSprite.setTexture(backgroundTexture);
 
-    // Cargar la fuente del texto
     font.loadFromFile("Fonts/BlackOpsOne-Regular.ttf");
 
     // BOTÓN de "Jugador vs jugador"
@@ -44,7 +43,6 @@ Menu::Menu() : window(sf::VideoMode(width, height), "UNO"), isPlaying(true) {
 void Menu::run() {
     while (window.isOpen() && isPlaying) {
         processEvents();
-        update();
         render();
     }
 }

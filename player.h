@@ -6,15 +6,9 @@ class Player:public Deck
 	private:
 
 		int currentPlayer = 0;
-		//int length;		
 		const int HANDSIZE = 8;
-		//vector<vector<Deck>> playersHand;
-		
 		vector<Player> players;
 		
-
-
-
 	public:
 	//	void comer();  
 	//	void jugar();

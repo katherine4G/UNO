@@ -75,10 +75,8 @@ Deck::Deck()
 };
 vector<Card> Deck::generateDeck() {
 
-
     vector<Card> deck;
   
-   
     for (int color = 0; color <= 3; color++)
     {
         for (int number = 0; number <= 12; number++)
@@ -195,24 +193,6 @@ void Deck::draaw()
             window.draw(sprite);
         }
     }
-	//Card card;
-    /*
-	std::vector<Card> mazo =generateDeck();
-	int i = 0;
-	//getRandomCard(mazo);
-	for (const auto& carta : mazo) {
-
-		std::cout << "dir "<< i++ << " = "<<&mazo<<" id " <<carta.Id << " : " << " -  "
-			<< carta.Number  << " -  " << carta.Color << std::endl;
-
-        cout<<"id =" << &carta.Id << endl;
-        cout << "num =" << &carta.Number<< endl;
-        cout << "colr =" << &carta.Color << endl;
-
-		//c.display();
-		//  cout<<i++<<" : " << &mazo << endl;
-	}*/
-
 		
 vector<Card> Deck::getDeck()
 {

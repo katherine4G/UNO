@@ -4,8 +4,6 @@ Player::Player()
 {
 	vector<vector<Card>> playersHand(3, vector<Card>());
 }
-vector<vector<Card>> Player::dealCards( )
-{
 
     vector<Card> deck = generateDeck();
     getRandomCard(deck);

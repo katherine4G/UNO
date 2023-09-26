@@ -42,8 +42,6 @@ GameLogic::GameLogic()
 				playerInput += event.text.unicode;
 				playerText.setString(playerInput);
 			}
-			// Si el evento es de tipo Closed cerramos la ventana
-			if (event.type == Event::EventType::Closed) window.close();
 
 			
 		}
@@ -106,7 +104,6 @@ GameLogic::GameLogic()
 	while (window.isOpen())
 	{
 		Event event;
-		// Procesamos la pila de eventos
 		while (window.pollEvent(event))
 		{
 			// Si el evento es de tipo Closed cerramos la ventana
@@ -121,5 +118,4 @@ GameLogic::GameLogic()
 		window.display();
 	}
  }
-*/
 
