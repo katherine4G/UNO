@@ -5,6 +5,19 @@ Player::Player()
 	vector<vector<Card>> playersHand(3, vector<Card>());
 }
 
+vector<Card> Player::getPlayerHand(int playerIndex) {
+	vector<vector<Card>> playersHand = dealCards();
+
+    // Verificar si el índice del jugador es válido
+    if (playerIndex < 0 || playerIndex >= playersHand.size()) 
+        cout << " el índice es inválido" << endl;
+        
+
+    return playersHand[playerIndex];
+}
+
+vector<vector<Card>> Player::dealCards() 
+{
     vector<Card> deck = generateDeck();
     getRandomCard(deck);
 
@@ -22,45 +35,17 @@ Player::Player()
         playersHand[2].push_back(deck[i]);
     }
 
-	////////////vector<vector<Card>> playersHand = p.dealCards();
-	
-
-	// Acceder a las cartas del primer jugador   ////YO
-	
-	vector<Card> player1Hand = playersHand[0];
-	cout << sizeof(playersHand) << ", ";
-
-		cout << endl;
-	for (const Card& card : player1Hand)
-	{
-		card.getNumber(); card.getColor(); card.getPosX();  card.getPosY();
-		//cout << "cartas jugador 1 = " << card.getNumber() << card.getColor() << card.getPosX()<<card.getPosY()<<endl;
-		cout << sizeof(player1Hand) <<", ";
-	}
-	cout << endl;
-	// Acceder a las cartas del segundo jugador   ///IA
-	vector<Card> player2Hand = playersHand[1];
-	for (const Card& card : player2Hand) {
-		card.getNumber(); card.getColor(); card.getPosX();  card.getPosY();
-		//cout << "cartas jugador Robot = " << card.getNumber() << card.getColor() << card.getPosX() << card.getPosY() << endl;
-		cout << sizeof(player2Hand) << ", ";
-	}
-	cout << endl;
-	// Acceder a las cartas del tercer jugador  ///Jugador 2
-	vector<Card> player3Hand = playersHand[2];
-	for (const Card& card : player3Hand) {
-		card.getNumber(); card.getColor(); card.getPosX();  card.getPosY();
-		//cout << "cartas jugador 2 = " << card.getNumber() << card.getColor() << card.getPosX() << card.getPosY() << endl;
-		cout << sizeof(player3Hand) << ", ";
-	}
-	cout << endl;
-
-   return playersHand;
+    return playersHand;
 }
 
-//vector<Card> Player::reparteMazo()
-//{
-//	dealCards();
-//
-//}
+void Player::player_index_hand(int playerIndex)
+{
+    vector<Card> playerHand = getPlayerHand(playerIndex);
 
+    for (const Card& card : playerHand)
+    {
+        card.getNumber(); card.getColor(); card.getPosX(); card.getPosY();
+        // cout << "Número: " << card.getNumber() << ", Color: " << card.getColor() << ", PosX: "<< card.getPosX() << ", PosY: " << card.getPosY() << endl;
+    }
+
+}

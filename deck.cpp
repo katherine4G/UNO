@@ -4,74 +4,6 @@
 Deck::Deck()
 {
 
-    // Inicializar las variables miembro
-
-    // Generar el mazo de cartas
-  //  deckCards = generateDeck();
-    std::vector<Card> mazo = generateDeck();
-    std::vector<sf::Sprite> cardSprites;
-    std::vector<sf::Texture> cardTextures;
-
-
-    float cardX = 1.0f; // Posición inicial en el eje X   //100.0
-    float cardY = 10.0f; // Posición inicial en el eje Y //100.0
-    float cardSpacing = 80.0f; //// Espaciado entre las cartas //20.0
-
-    // Cargar las texturas de las cartas
-    for (const auto& carta : mazo)
-    {
-        std::string filePath = "deck/";
-
-        if (carta.getColor() == 0)
-        {
-            filePath = filePath + "r" + std::to_string(carta.getNumber()) + ".png";
-            cout << "color red " << endl;
-        }
-        else if (carta.getColor() == 1)
-        {
-            filePath = filePath + "y" + std::to_string(carta.getNumber()) + ".png";
-            cout << "color yellow " << endl;
-        }
-        else if (carta.getColor() == 2)
-        {
-            filePath = filePath + "g" + std::to_string(carta.getNumber()) + ".png";
-            cout << "color green " << endl;
-        }
-        else if (carta.getColor() == 3)
-        {
-            filePath = filePath + "b" + std::to_string(carta.getNumber()) + ".png";
-            cout << "color blue " << endl;
-        }
-        else if (carta.getColor() == 4)
-        {
-            filePath = filePath + "N" + std::to_string(carta.getNumber()) + ".png";
-            cout << "color wild " << endl;
-        }
-
-        Texture cardTexture;
-        if (!cardTexture.loadFromFile(filePath))
-        {
-            cout << "Error al cargar la ruta: " << filePath << endl;
-        }
-
-        cardTextures.push_back(cardTexture);
-    }
-
-    // Crear las sprites de las cartas
-    for (int i = 0; i < mazo.size(); i++)
-    {
-        sf::Sprite cardSprite;
-        cardSprite.setTexture(cardTextures[i]);
-        cardSprite.setPosition(cardX, cardY);
-
-        cardSprites.push_back(cardSprite);
-
-        cardX += 70.0f;  //20,0
-        // cardY += 100.0f; //20.0
-        cardX += cardSpacing; // Aumentar la posición en el eje X por el espaciado
-    }
-
-
 };
 vector<Card> Deck::generateDeck() {
 
@@ -108,7 +40,7 @@ vector<Card> Deck::generateDeck() {
         }
    
     }
-    //////  Agregar las cartas comodín 
+    //comodín 
     for (int color = 0; color < 4; color++)
     {
         for (int number = 13; number < 15; number++)
@@ -120,23 +52,6 @@ vector<Card> Deck::generateDeck() {
        
         }
     }
-    //////////////////////////
-
-
-    //for (int color = 0; color <= 3; color++)
-    //{
-    //    for (int number = 0; number <= 12; number++)
-    //    {
-    //        // ...
-    //        deck.push_back(card);
-
-    //        // Cargar la textura y establecer la posición de la sprite
-    //        card.texture.loadFromFile("ruta_de_la_imagen.png");
-    //        card.sprite.setTexture(card.texture);
-    //        card.sprite.setPosition(card.getPosX(), card.getPosY());
-    //    }
-    //    // ...
-    //}
     getRandomCard(deck);
     return deck;
 }
@@ -151,49 +66,9 @@ void Deck::getRandomCard(vector<Card> &randomCards)
         int index2 = rand() % randomCards.size();
         swap(randomCards[index1], randomCards[index2]);
     }
-    //random_shuffle(randomCards.begin(), randomCards.end());
+
 }
 
-void Deck::draaw()
-{
-    std::vector<Card> deck = generateDeck();
-    int i = 0;
-
-    Card segundaCarta = deck[1];
-    getRandomCard(deck);
-    for (const auto& carta : deck) {
-        std::cout << "dir " << i++ << " = " << &deck << " : " << " -  "
-            << carta.getNumber() << " -  " << carta.getColor() << " : "
-            << carta.getPosX() << " : " << carta.getPosY() << std::endl;
-
-    }
-    
-}
-
-
-    void Deck::draws(sf::RenderWindow & window)
-    {
-        std::vector<Card> mazo = generateDeck();
-        std::vector<sf::Sprite> cardSprites;
-        std::vector<sf::Texture> cardTextures;
-
-        for (const auto& carta : mazo) {
-            sf::Texture cardTexture;
-            cardTexture.loadFromFile("deck/red_zero.png");
-            cardTextures.push_back(cardTexture);
-
-            sf::Sprite cardSprite(cardTexture);
-            cardSprite.setPosition(100, 200);
-            // Configura la posición y otros atributos del sprite según sea necesario
-
-            cardSprites.push_back(cardSprite);
-        }
-
-        for (const auto& sprite : cardSprites) {
-            window.draw(sprite);
-        }
-    }
-		
 vector<Card> Deck::getDeck()
 {
 	return deckCards;
@@ -204,4 +79,15 @@ void Deck::setDeck(vector<Card> deck)
 	this->deckCards = deck;
 }
 
+/*			DECK (CARDS TYPES)
+    ____________________________________________________________
+    |  0  1  2  3  4  5  6  7  8  9   10   11   12              | ---> Pos
+    |( 0  11 22 33 44 55 66 77 88 99 SkSk RvRv P2P2) * 4colores | ---> Normal
+    |-----------------------------------------------------------|
+    | 13 13 13 13 14 14 14 14									| ---> Pos
+    |(+4 +4 +4 +4 Cc Cc Cc Cc) * 1 color						| ---> Wild
+    -------------------------------------------------------------
+    RED=0 - YELLOW=1 - GREEN=2 - BLUE=3 - BLACK=4
 
+    col(doble*norm)-!doble  + black(Wild)
+    4(2x13) -4 +  1(2 x 4)) = 100 -4 + 8   = 108 cartas   */

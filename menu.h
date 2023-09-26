@@ -1,16 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 class Menu {
 public:
     Menu();
     void run();
     void processEvents();
-    void update();
     void render();
 private:
- //   Deck d;
-    std::vector<sf::Sprite> cartas;  //
+
+    std::vector<sf::Sprite> cards;  
     const int width = 1722, height = 856;
     sf::RenderWindow window;
     sf::Texture backgroundTexture;
@@ -18,11 +18,8 @@ private:
     sf::Font font;
     sf::Text JvsJ;
     sf::Text JvsIA;
-    sf::Text salirText;
+    sf::Text exitText;
     bool isPlaying;
-   /* std::vector<Card> mazo = d.generateDeck();
-    std::vector<sf::Sprite> cardSprites;
-    std::vector<sf::Texture> cardTextures;*/
 
   
 };

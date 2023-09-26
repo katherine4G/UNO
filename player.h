@@ -8,15 +8,16 @@ class Player:public Deck
 		int currentPlayer = 0;
 		const int HANDSIZE = 8;
 		vector<Player> players;
-		
+
 	public:
-	//	void comer();  
-	//	void jugar();
+
 		Player();
 		~Player(){}
-		vector<vector<Card>> playersHand(int , vector<Card>());
+
 		vector<vector<Card>> dealCards();
-		vector<Card> reparteMazo();
+	
+		vector<Card> getPlayerHand(int playerIndex);
+		void player_index_hand(int playerIndex);
 		
 	/*	Card getCard(int) const;
 		bool addCard(const Sprite&, int x, int y);
@@ -24,7 +25,7 @@ class Player:public Deck
 		int getNoOfCards() const;*/
 	
 	private:
-		bool isValidIndex(int) const;
+
 		void reSize(int);
 		
 

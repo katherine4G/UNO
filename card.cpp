@@ -6,11 +6,9 @@ Card::Card()
 	PosY = 0;
 	Color = 0;
 	Number = 0;
-	Upcard = false; //Descubierta//know if the card is face down
+	Upcard = false; //know if the card is face down
 
 }
-
-
 
 Card::Card(int _num,int _color,int _x,int _y)
 {
@@ -20,24 +18,7 @@ Card::Card(int _num,int _color,int _x,int _y)
 	this->PosY = _y;
 	sprite.setPosition((int)_x,(int) _y);
 
-	//red cards: for (int i = 0; i < faceCard.size(); i++) faceCard[i].loadFromFile("deck/r"+to_string(i)+".png");
-
-
-	std::string filePath = "deck/", r = "r", g = "g", b = "b", y = "y", N = "N";
-	for (int i = 0; i < faceCard.size(); i++)
-	{
-		//if(!faceCard[i].loadFromFile("")) cout << "Error al cargar textura frontal" << endl;
-			 if (getNumber() == i && getColor() == 0)  faceCard[i].loadFromFile(filePath + r + std::to_string(i) + ".png");
-		else if (getNumber() == i && getColor() == 1)  faceCard[i].loadFromFile(filePath + y + std::to_string(i) + ".png");
-		else if (getNumber() == i && getColor() == 2)  faceCard[i].loadFromFile(filePath + g + std::to_string(i) + ".png");
-		else if (getNumber() == i && getColor() == 3)  faceCard[i].loadFromFile(filePath + b + std::to_string(i) + ".png");
-		else if (getNumber() == 4 && getColor() == 4)  faceCard[i].loadFromFile(filePath + N + std::to_string(i) + ".png");
-		getPosX();getPosY();
-		
-
-	}
-
-	if (!BackCard.loadFromFile("deck/backUNO.png")) 
+	if (!BackCard.loadFromFile("deck/backUNO.png"))
 	{
 		cout << "Error al cargar textura trasera" << endl;
 	}
@@ -45,7 +26,6 @@ Card::Card(int _num,int _color,int _x,int _y)
 }
 
 //setters
-
 void Card::setNumber(int _num) { Number = _num; }
 void Card::setColor(int _color) { Color = _color; }
 void Card::setPosX_Y(int x, int y)
@@ -58,19 +38,27 @@ void Card::setPosX_Y(int x, int y)
 //getters
 int Card::getNumber() const { return Number; }
 int Card::getColor() const { return Color; }
-int Card::getPosX() const { return PosX+10; }
+int Card::getPosX() const { return PosX; }
 int Card::getPosY() const { return PosY; }
 
-void Card::setTexture(Texture faceCard) {
+void Card::setTexture(Texture faceCard)
+{
 	FaceCard = faceCard;
 }
-void Card::setSprite(const Sprite& s) { sprite = s; }
+void Card::setSprite(const Sprite& s) 
+{
+	sprite = s; 
+}
 
-void Card::LockSprite() {
+void Card::LockSprite()
+{
 	sprite.setTexture(BackCard);
 }
 
-void Card::UnlockSprite() { sprite.setTexture(FaceCard); }
+void Card::UnlockSprite()
+{
+	sprite.setTexture(FaceCard);
+}
 
 Sprite Card::getSprite() { return Sprite(); }
 
@@ -83,9 +71,4 @@ void Card::Descubrir() {
 }
 void Card::draw(RenderTarget& rt, RenderStates rs) const {
 	rt.draw(sprite, rs);
-}
-
-void Card::display()
-{
-	cout  << " - color: " << this->Color << " - numero: " << this->Number << " - x: " << this->PosX << " - y: " << this->PosY <<endl;
 }
