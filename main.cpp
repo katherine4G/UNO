@@ -3,19 +3,20 @@
 using namespace std;
 using namespace sf;
 
-int main() {
+int main()
+{
+	Menu show;
+	show.myMenu();
+	return 0;
+}
 
 	//WINDOW//
 	RenderWindow window(VideoMode(1444, 820), "-UNO CARDS GAME-");
 	window.setFramerateLimit(60);	// definimos los frames por segundos (fps) a que correrá el programa
 
-	//BACKGROUND//
-	Texture texture;
-	if (!texture.loadFromFile("deck/background.png")) {
-		cout << "error al cargar textura de fondo" << endl;
-		system("pause");
-	}
-	Sprite background(texture); //set sprite at texture
+
+
+
 
 	//CARD
 	//Card Card("","","",)
@@ -32,6 +33,5 @@ int main() {
 			window.display();
 		}
 
-	return 0;
 
 }
