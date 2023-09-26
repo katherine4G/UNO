@@ -1,37 +1,69 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
-using namespace std;
-using namespace sf;
+#include "Game.h"
+#include "Player.h"
 
-int main()
-{
-	Menu show;
-	show.myMenu();
+///////////// ERROR LINNK1168     taskkill /F /IM UNO.exe ///////////////////////
+
+#include <iostream>
+#include "Menu.h"
+
+int main() {
+	Menu menu; Player p;GameLogic g;
+	p.dealCards(); 
+	//
+	//Deck d;
+//	d.draaw();
+	//menu.run();
+	//g.menu();
+	//g.window2();
+
 	return 0;
 }
 
-	//WINDOW//
-	RenderWindow window(VideoMode(1444, 820), "-UNO CARDS GAME-");
-	window.setFramerateLimit(60);	// definimos los frames por segundos (fps) a que correrá el programa
+
+
+
+//
+//int main()
+//{
+//
+//	//setlocale(LC_ALL, "spanish");
+//	
+//	//Card c; 
+//	// Deck d;
+//	//Player p;
+//	 GameLogic g; 
+//	 
+////	d.draaw();
+//	//p.dealCards();
+////	g.menu();
+//	g.window2();
+//
+//	return 0;
+//}
+//	
+	//d.draw();
+
+/*		vector<Card> deck = d. generateDeck();
+
+	if (deck.size() >= 2) {
+		Card segundaCarta = deck[3];
+		int number = segundaCarta.getNumber();
+		int color = segundaCarta.getColor();
+
+		cout << "Number: " << number << endl;
+		cout << "Color: " << color << endl;
+	}
+	else {
+		cout << "No hay suficientes cartas en el mazo" << endl;
+	}
+
+	std::vector<Card> mazo = d.generateDeck(); // Supongamos que tienes una función para cargar el mazo
+
+	std::vector<sf::Texture> cardTextures;
+	std::vector<sf::Sprite> cardSprites;
+
+	loadCardTextures(mazo, cardTextures, cardSprites);*/
 
 
 
 
-
-	//CARD
-	//Card Card("","","",)
-
-		while (window.isOpen())
-		{
-			Event event;
-			while (window.pollEvent(event))
-			{
-				if (event.type == Event::Closed)  window.close();
-			}
-			window.clear();
-			window.draw(background);
-			window.display();
-		}
-
-
-}

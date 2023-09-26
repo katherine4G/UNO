@@ -1,46 +1,41 @@
 #pragma once
-#pragma once
-#include <iostream>
-#include <SFML/Graphics.hpp>
+
 #include "card.h"
-using namespace std;
-using namespace sf;
-/*
-* DECK (CARDS TYPES)
-* num= 0-1-2-3-4-5-6-7-8-9
-* color= Red-Green-Blue-Yellow
-* actionType=reverse-skip- Plus 2
-* wildType=changeColor- Plus 4
-*/
-class Deck
+#include <algorithm>
+#include <random>
+#include <SFML/Graphics.hpp>
+
+class Deck : public Card
 {
-private:
-	string number, color, actionType, wildType;
+	private:
+		vector<Card> deckCards;
 
-
-	void getRandomCard(int&, int&);
-	void addCardInPlayer(Player&, int, bool);
-	int getCardSelectedID(const Player&, int, int);
-	void initializePC(Player&);
-	Sprite** getCardBackArray(const Sprite&, int);
-	void initializeCenterCard(Card&);
-	void initializePlayer(Player&);
-	int announceWinner(int, int);
-	int getIndexOfBars(const Card&);
-	int getColorOfMouseClick(int, int);
-	char getColorOfIndex(int);
-	int pcAutoPlay(Player&, const Card&);
-	bool changeTurn(int&, const Card&, bool);
-	bool hasValidMove(Player& p, const Card& c);
-public:
-
-	Deck();
-	~Deck() {}
-
-
-
+	public:
+		Deck();
+		~Deck() {}
+		vector<Card> generateDeck();//int, int, int
+		//vector<vector<Card>> dealCards(); lo pasé a player
+		vector<Card> getDeck();
+		void setDeck(vector<Card>);	
+		void draaw();
+		void draws(sf::RenderWindow& window);
+	//	void mostrarD() {}
+		void getRandomCard(vector<Card> &);
+	private:
+		
+		
+		Sprite** getCardBackArray(const Sprite&, int);
+		void initializeCenterCard(Card&);
 };
-Deck::Deck()
-{
+/*			DECK (CARDS TYPES)
+	____________________________________________________________
+	|  0  1  2  3  4  5  6  7  8  9   10   11   12              | ---> Pos
+	|( 0  11 22 33 44 55 66 77 88 99 SkSk RvRv P2P2) * 4colores | ---> Normal
+	|-----------------------------------------------------------|
+	| 13 13 13 13 14 14 14 14									| ---> Pos
+	|(+4 +4 +4 +4 Cc Cc Cc Cc) * 1 color						| ---> Wild
+	-------------------------------------------------------------
+	RED=0 - YELLOW=1 - GREEN=2 - BLUE=3 - BLACK=4
 
-}
+	col(doble*norm)-!doble  + black(Wild)
+	4(2x13) -4 +  1(2 x 4)) = 100 -4 + 8   = 108 cartas   */

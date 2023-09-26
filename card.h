@@ -4,76 +4,42 @@
 using namespace std;
 using namespace sf;
 
-class Card : public Drawable { // para poder dibujar la carta
-private:
-	Texture faceCard, backCard;  //textura, textureblock
-	Sprite sprite;
-	string type;
-	string color;
-	string num;
-	bool  upcard = false; //Descubierta//know if the card is face down
+class Card :public Drawable
+{ 
+   public:
+        Card();
+        ~Card(){}
+        Card( int _color, int _num, int _x, int _y);  //identeficator, color, number,x,y
+        void setColor(int);
+        void setNumber(int);
+        void setPosX_Y(int, int);  //estblecer la posicion de c/u     
 
-public:
-	Card() {}
-	~Card() {}
-	Card(string typ, string colo, string n, int x, int y); //
-	void setText(Texture face);
-	void blockSprite(); //back card
-	void showSprite();  //face card
-	string Wtype();     //Whats type? normal - actionType - wildType;
-	string Wcolor();
-	string Wnum();
-	bool statecard(); //Stade of the card  (to face or back)?
-	void downCard();  //upcard=true
-	virtual void draw(RenderTarget& rt, RenderStates& rs) const;
+        int getColor()const;
+        int getNumber()const;
+        int getPosX() const;
+        int getPosY() const;
+
+       void setTexture(Texture faceCard);
+        void LockSprite();
+        void UnlockSprite();
+
+        void setSprite(const Sprite& t); //establezo la el sprite con una dirección de memoria tipo sprite.
+        Sprite getSprite();
+          
+        void display();
+        bool ConsultarEstado();
+        void Descubrir();
+        virtual void draw(RenderTarget& rt, RenderStates rs) const;
+  protected:
+        sf::Sprite sprite;
+        sf::Texture texture;
+        Texture FaceCard, BackCard;  //textura, textureblock
+        vector<Texture> faceCard, backCard;
+        int PosX;
+        int PosY;
+        int Color;
+        int Number;
+        bool Upcard ; //Descubierta//know if the card is face down
+    
 };
 
-Card::Card(string typ, string colo, string n, int x, int y)
-{
-    this->type = typ;
-    this->color = colo;
-    this->num = n;
-    sprite.setPosition(x, y);
-    if (!backCard.loadFromFile("deck/UNOback.png"))
-        cout << "error al cargar textura de fondo" << endl;
-
-}
-void Card::setText(Texture face)
-{
-    this->faceCard = face;
-
-}
-void Card::blockSprite()
-{
-    sprite.setTexture(backCard);
-}
-void Card::showSprite()
-{
-    sprite.setTexture(faceCard);
-}
-string Card::Wtype()
-{
-    return type;
-}
-
-string Card::Wcolor()
-{
-    return color;
-}
-
-string Card::Wnum()
-{
-    return num;
-}
-
-bool Card::statecard()
-{
-    return upcard;
-}
-void Card::downCard() {
-    upcard = true;
-}
-void Card::draw(RenderTarget& rt, RenderStates& rs) const
-{
-    rt.draw(sprite, rs);
-}
